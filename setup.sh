@@ -15,8 +15,4 @@ if [ ! -f .env ]; then
   echo "→ Se creó el archivo .env: edítalo con tu usuario y contraseña de PostgreSQL"
 fi
 
-echo ""
-echo "Listo. Para iniciar la aplicación:"
-echo "  source .venv/bin/activate"
-echo "  python app.py"
-echo "y abre http://127.0.0.1:5001"
+source .venv/Scripts/activate
