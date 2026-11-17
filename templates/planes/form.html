@@ -1,36 +1,70 @@
 {% extends "base.html" %}
 {% block title %}{{ titulo }}{% endblock %}
 {% block content %}
-<h1 class="h3 mb-3">{{ titulo }}</h1>
-<div class="card"><div class="card-body">
-  <form method="post" novalidate>
-    <div class="mb-3">
-      <label class="form-label" for="nombre_plan">Nombre del plan *</label>
-      <input class="form-control" id="nombre_plan" name="nombre_plan"
-             value="{{ item.nombre_plan or '' }}">
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-xl-7">
+    <div class="mb-4">
+      <h1 class="ip-title">{{ titulo }}</h1>
     </div>
-    <div class="mb-3">
-      <label class="form-label" for="duracion_dias">Duración (días) *</label>
-      <input type="number" class="form-control" id="duracion_dias" name="duracion_dias"
-             value="{{ item.duracion_dias or '' }}">
+
+    <div class="ip-card">
+      <form method="post" class="p-4">
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label" for="nombre_plan">Nombre del plan *</label>
+            <input class="form-control" id="nombre_plan" name="nombre_plan"
+                   maxlength="60" required autofocus
+                   placeholder="Ej: Mensual"
+                   value="{{ item.nombre_plan or '' }}">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="duracion_dias">Duración *</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="duracion_dias" name="duracion_dias"
+                     min="1" step="1" required
+                     placeholder="30"
+                     value="{{ item.duracion_dias or '' }}">
+              <span class="input-group-text">días</span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="precio">Precio *</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input type="number" class="form-control" id="precio" name="precio"
+                     min="0.01" step="0.01" required
+                     placeholder="66000"
+                     value="{{ item.precio or '' }}">
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch"
+                     id="incluye_clases" name="incluye_clases"
+                     {% if item.incluye_clases %}checked{% endif %}>
+              <label class="form-check-label" for="incluye_clases">Incluye clases grupales</label>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label" for="descripcion">Descripción</label>
+            <textarea class="form-control" id="descripcion" name="descripcion"
+                      rows="3" maxlength="200"
+                      placeholder="Opcional. Máximo 200 caracteres.">{{ item.descripcion or '' }}</textarea>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-4">
+          <button class="btn btn-primary" type="submit">
+            <i class="bi bi-check-lg me-1"></i>Guardar plan
+          </button>
+          <a class="btn btn-secondary" href="{{ url_for('planes.listar') }}">Cancelar</a>
+        </div>
+      </form>
     </div>
-    <div class="mb-3">
-      <label class="form-label" for="precio">Precio *</label>
-      <input type="number" step="0.01" class="form-control" id="precio" name="precio"
-             value="{{ item.precio or '' }}">
-    </div>
-    <div class="form-check mb-3">
-      <input class="form-check-input" type="checkbox" id="incluye_clases" name="incluye_clases"
-             {% if item.incluye_clases %}checked{% endif %}>
-      <label class="form-check-label" for="incluye_clases">Incluye clases grupales</label>
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="descripcion">Descripción</label>
-      <input class="form-control" id="descripcion" name="descripcion"
-             value="{{ item.descripcion or '' }}">
-    </div>
-    <button class="btn btn-primary">Guardar</button>
-    <a class="btn btn-secondary" href="{{ url_for('planes.listar') }}">Cancelar</a>
-  </form>
-</div></div>
+  </div>
+</div>
 {% endblock %}

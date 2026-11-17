@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block title %}No encontrado{% endblock %}
 {% block content %}
-<h1 class="h3">Página o registro no encontrado</h1>
-<a class="btn btn-primary" href="{{ url_for('inicio') }}">Volver al inicio</a>
+<div class="ip-error">
+  <div class="code">404</div>
+  <h1 class="h3 mb-2">Página o registro no encontrado</h1>
+  <p class="text-secondary mb-4">El enlace no existe o el registro ya fue eliminado.</p>
+  <a class="btn btn-primary" href="{{ url_for('inicio') }}">
+    <i class="bi bi-house-door me-1"></i>Volver al inicio
+  </a>
+</div>
 {% endblock %}

@@ -1,6 +1,37 @@
 {% extends "base.html" %}
 {% block title %}Inicio{% endblock %}
 {% block content %}
-<h1 class="h3">Sistema de gestión del gimnasio</h1>
-<p class="text-secondary">Selecciona una opción del menú para administrar los datos.</p>
+<section class="ip-hero mb-4">
+  <div>
+    <h1>Tu paraíso del fitness</h1>
+    <p>Panel de administración de Iron Paradise Gym. Crea, edita y elimina los planes del gimnasio desde un solo lugar.</p>
+    <a class="btn btn-primary btn-lg mt-2" href="{{ url_for('planes.listar') }}">
+      <i class="bi bi-ticket-perforated me-2"></i>Ver planes
+    </a>
+  </div>
+  <div class="hero-logo">
+    <img src="{{ url_for('static', filename='img/logo.webp') }}" alt="Logo Iron Paradise Gym">
+  </div>
+</section>
+
+<div class="row g-3">
+  <div class="col-md-6">
+    <a class="ip-shortcut" href="{{ url_for('planes.listar') }}">
+      <span class="icon"><i class="bi bi-ticket-perforated"></i></span>
+      <span>
+        <h2>Planes</h2>
+        <p>Precios, duración y clases incluidas.</p>
+      </span>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a class="ip-shortcut" href="{{ url_for('planes.crear') }}">
+      <span class="icon"><i class="bi bi-plus-lg"></i></span>
+      <span>
+        <h2>Nuevo plan</h2>
+        <p>Agrega una nueva opción de membresía.</p>
+      </span>
+    </a>
+  </div>
+</div>
 {% endblock %}
