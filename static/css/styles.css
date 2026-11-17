@@ -1,0 +1,361 @@
+/* ==========================================================================
+   Iron Paradise Gym - tema morado y amarillo
+   Se apoya en Bootstrap 5.3 (modo oscuro) y sobrescribe sus variables.
+   ========================================================================== */
+
+:root {
+  --ip-night: #150826;
+  --ip-violet-900: #1f0d38;
+  --ip-violet-800: #2b1250;
+  --ip-violet-600: #5b21b6;
+  --ip-violet-400: #a78bfa;
+  --ip-gold: #ffc933;
+  --ip-gold-soft: #ffd95e;
+  --ip-gold-dark: #e6ad0a;
+  --ip-text: #f1ebfc;
+  --ip-muted: #b4a6d1;
+  --ip-line: rgba(167, 139, 250, 0.22);
+
+  --ip-font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --ip-font-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---------- Variables de Bootstrap ---------- */
+[data-bs-theme="dark"] {
+  --bs-body-bg: var(--ip-night);
+  --bs-body-color: var(--ip-text);
+  --bs-body-font-family: var(--ip-font-body);
+  --bs-body-font-size: 1.05rem;
+  --bs-heading-color: #fff;
+  --bs-emphasis-color: #fff;
+  --bs-border-color: var(--ip-line);
+  --bs-secondary-color: var(--ip-muted);
+  --bs-tertiary-bg: var(--ip-violet-900);
+  --bs-secondary-bg: var(--ip-violet-800);
+  --bs-link-color: var(--ip-gold);
+  --bs-link-color-rgb: 255, 201, 51;
+  --bs-link-hover-color: var(--ip-gold-soft);
+  --bs-link-hover-color-rgb: 255, 217, 94;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(900px 520px at 90% -10%, rgba(91, 33, 182, 0.45), transparent 60%),
+    radial-gradient(700px 400px at -10% 110%, rgba(91, 33, 182, 0.25), transparent 60%),
+    var(--ip-night);
+  background-attachment: fixed;
+}
+
+main { flex: 1 0 auto; }
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--ip-font-display);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Título de página con barra amarilla */
+.ip-title {
+  font-size: 2.1rem;
+  margin: 0;
+}
+.ip-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 0.4rem;
+  background: var(--ip-gold);
+  border-radius: 2px;
+}
+
+/* ---------- Barra de navegación ---------- */
+.ip-nav {
+  background: var(--ip-violet-900);
+  border-bottom: 3px solid var(--ip-gold);
+  padding-block: 0.5rem;
+}
+.ip-nav .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--ip-font-display);
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.ip-nav .navbar-brand img {
+  height: 46px;
+  width: auto;
+}
+.ip-nav .nav-link {
+  color: var(--ip-muted);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+.ip-nav .nav-link:hover { color: #fff; }
+.ip-nav .nav-link.active {
+  color: var(--ip-night);
+  background: var(--ip-gold);
+}
+.ip-nav .navbar-toggler {
+  border-color: var(--ip-line);
+}
+.ip-nav .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 201, 51, 0.3);
+}
+
+/* ---------- Botones ---------- */
+.btn { font-weight: 600; border-radius: 0.5rem; }
+
+.btn-primary {
+  --bs-btn-color: #1b0a30;
+  --bs-btn-bg: var(--ip-gold);
+  --bs-btn-border-color: var(--ip-gold);
+  --bs-btn-hover-color: #1b0a30;
+  --bs-btn-hover-bg: var(--ip-gold-soft);
+  --bs-btn-hover-border-color: var(--ip-gold-soft);
+  --bs-btn-active-color: #1b0a30;
+  --bs-btn-active-bg: var(--ip-gold-dark);
+  --bs-btn-active-border-color: var(--ip-gold-dark);
+  --bs-btn-focus-shadow-rgb: 255, 201, 51;
+  --bs-btn-disabled-color: #1b0a30;
+  --bs-btn-disabled-bg: var(--ip-gold);
+  --bs-btn-disabled-border-color: var(--ip-gold);
+}
+
+.btn-secondary {
+  --bs-btn-color: var(--ip-text);
+  --bs-btn-bg: var(--ip-violet-800);
+  --bs-btn-border-color: var(--ip-violet-600);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--ip-violet-600);
+  --bs-btn-hover-border-color: var(--ip-violet-600);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--ip-violet-600);
+  --bs-btn-active-border-color: var(--ip-violet-600);
+  --bs-btn-focus-shadow-rgb: 167, 139, 250;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--ip-gold);
+  --bs-btn-border-color: rgba(255, 201, 51, 0.6);
+  --bs-btn-hover-color: #1b0a30;
+  --bs-btn-hover-bg: var(--ip-gold);
+  --bs-btn-hover-border-color: var(--ip-gold);
+  --bs-btn-active-color: #1b0a30;
+  --bs-btn-active-bg: var(--ip-gold-dark);
+  --bs-btn-active-border-color: var(--ip-gold-dark);
+  --bs-btn-focus-shadow-rgb: 255, 201, 51;
+}
+
+/* ---------- Tarjetas, tablas y modal ---------- */
+.ip-card {
+  background: var(--ip-violet-900);
+  border: 1px solid var(--ip-line);
+  border-radius: 0.9rem;
+  overflow: hidden;
+}
+
+.ip-table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--ip-text);
+  --bs-table-border-color: var(--ip-line);
+  --bs-table-hover-bg: rgba(167, 139, 250, 0.08);
+  --bs-table-hover-color: #fff;
+  margin: 0;
+}
+.ip-table thead th {
+  background: var(--ip-violet-800);
+  color: var(--ip-gold);
+  font-family: var(--ip-font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.85rem 1rem;
+  border-bottom: 2px solid var(--ip-gold);
+  white-space: nowrap;
+}
+.ip-table tbody td { padding: 0.85rem 1rem; }
+.ip-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.ip-table .precio {
+  font-weight: 700;
+  color: var(--ip-gold);
+}
+
+.badge-si,
+.badge-no {
+  display: inline-block;
+  padding: 0.3em 0.75em;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.badge-si { background: rgba(255, 201, 51, 0.16); color: var(--ip-gold); }
+.badge-no { background: rgba(167, 139, 250, 0.12); color: var(--ip-muted); }
+
+.modal-content {
+  --bs-modal-bg: var(--ip-violet-900);
+  --bs-modal-border-color: var(--ip-line);
+  --bs-modal-border-radius: 0.9rem;
+}
+.modal-header, .modal-footer { border-color: var(--ip-line); }
+
+/* ---------- Formularios ---------- */
+.form-label { font-weight: 600; }
+
+.form-control,
+.input-group-text {
+  background-color: var(--ip-violet-800);
+  border-color: var(--ip-line);
+  color: var(--ip-text);
+}
+.input-group-text { color: var(--ip-gold); font-weight: 600; }
+.form-control::placeholder { color: rgba(180, 166, 209, 0.6); }
+.form-control:focus {
+  background-color: var(--ip-violet-800);
+  color: #fff;
+  border-color: var(--ip-gold);
+  box-shadow: 0 0 0 0.2rem rgba(255, 201, 51, 0.2);
+}
+
+.form-check-input {
+  background-color: var(--ip-violet-800);
+  border-color: var(--ip-violet-400);
+}
+.form-check-input:checked {
+  background-color: var(--ip-gold);
+  border-color: var(--ip-gold);
+}
+.form-check-input:focus {
+  border-color: var(--ip-gold);
+  box-shadow: 0 0 0 0.2rem rgba(255, 201, 51, 0.25);
+}
+.form-switch .form-check-input:checked {
+  --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%231b0a30'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input { width: 2.6em; height: 1.35em; }
+
+/* ---------- Inicio (hero) ---------- */
+.ip-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 3rem 3rem 3.5rem;
+  background: linear-gradient(135deg, var(--ip-violet-800), var(--ip-violet-900) 65%);
+  border: 1px solid var(--ip-line);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.ip-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 10px;
+  background: var(--ip-gold);
+}
+.ip-hero h1 {
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  line-height: 0.95;
+  margin-bottom: 1rem;
+}
+.ip-hero p {
+  max-width: 34rem;
+  color: var(--ip-muted);
+  font-size: 1.15rem;
+}
+.ip-hero .hero-logo {
+  display: flex;
+  justify-content: center;
+}
+.ip-hero .hero-logo img {
+  width: min(100%, 300px);
+  height: auto;
+  filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.55));
+}
+
+@media (max-width: 767.98px) {
+  .ip-hero {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem 2rem 2rem;
+    text-align: left;
+  }
+  .ip-hero .hero-logo { order: -1; justify-content: flex-start; }
+  .ip-hero .hero-logo img { width: 150px; }
+}
+
+/* Accesos rápidos */
+.ip-shortcut {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  color: var(--ip-text);
+  text-decoration: none;
+  background: var(--ip-violet-900);
+  border: 1px solid var(--ip-line);
+  border-radius: 0.9rem;
+  transition: border-color 0.15s ease;
+}
+.ip-shortcut:hover { border-color: var(--ip-gold); color: #fff; }
+.ip-shortcut .icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  font-size: 1.5rem;
+  color: var(--ip-night);
+  background: var(--ip-gold);
+  border-radius: 0.75rem;
+}
+.ip-shortcut h2 { font-size: 1.4rem; margin: 0; }
+.ip-shortcut p { margin: 0; color: var(--ip-muted); font-size: 0.95rem; }
+
+/* ---------- Páginas de error ---------- */
+.ip-error {
+  max-width: 560px;
+  margin: 3rem auto;
+  text-align: center;
+}
+.ip-error .code {
+  font-family: var(--ip-font-display);
+  font-weight: 700;
+  font-size: clamp(5rem, 18vw, 9rem);
+  line-height: 1;
+  color: var(--ip-gold);
+}
+.ip-error code {
+  color: var(--ip-gold);
+  background: var(--ip-violet-800);
+  padding: 0.1em 0.45em;
+  border-radius: 0.35rem;
+}
+
+/* ---------- Pie de página ---------- */
+.ip-footer {
+  margin-top: 2rem;
+  padding-block: 1.25rem;
+  color: var(--ip-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--ip-line);
+}
+
+/* Foco visible para teclado */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--ip-gold);
+  outline-offset: 2px;
+}
