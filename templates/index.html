@@ -1,36 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Inicio{% endblock %}
 {% block content %}
-<h1 class="h3 mb-1">Panel de la base de datos <code>ventas_db</code></h1>
-<p class="text-secondary mb-4">Selecciona una tabla para consultar, crear, editar o eliminar registros.</p>
-
-{% set tarjetas = [
-('categorias.listar', 'Categorías', 'tags', c.categorias, ''),
-('productos.listar', 'Productos', 'box-seam', c.productos, ''),
-('clientes.listar', 'Clientes', 'people', c.clientes, ''),
-('vendedores.listar', 'Vendedores', 'person-badge', c.vendedores, ''),
-('ventas.listar', 'Ventas', 'receipt', c.ventas, 'ventas'),
-] %}
-<div class="row g-3">
-    {% for endpoint, label, icon, n, extra in tarjetas %}
-    <div class="col-6 col-md-4 col-lg">
-        <a class="card-link-full" href="{{ url_for(endpoint) }}">
-            <div class="card card-tabla {{ extra }} h-100">
-                <div class="card-body">
-                    <div class="text-secondary"><i class="bi bi-{{ icon }}"></i> {{ label }}</div>
-                    <div class="numero">{{ n }}</div>
-                    <div class="small text-secondary">registros</div>
-                </div>
-            </div>
-        </a>
-    </div>
-    {% endfor %}
-</div>
-
-<div class="card mt-4">
-    <div class="card-body">
-        <div class="text-secondary">Total vendido (con descuentos)</div>
-        <div class="fs-3 fw-semibold">{{ c.total_ventas|pesos }}</div>
-    </div>
-</div>
+<h1 class="h3">Sistema de gestión del gimnasio</h1>
+<p class="text-secondary">Selecciona una opción del menú para administrar los datos.</p>
 {% endblock %}
