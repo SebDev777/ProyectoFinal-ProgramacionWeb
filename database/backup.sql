@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict cw4Oys5yBhLMnbpjADlZXllOPP6SmPGqebFr0ih0hO69W8skmJt8fym4qDe40t6
+\restrict WxM5qP3ZQn0nNwkbBuqgjoOWwAwXI9036TjLcBoNLAZAlaJLG7zKXBi7j1lgMb2
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-11-15 14:36:31
+-- Started on 2026-11-16 19:37:02
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -63,7 +63,7 @@ CREATE SEQUENCE public.clases_id_clase_seq
 ALTER SEQUENCE public.clases_id_clase_seq OWNER TO postgres;
 
 --
--- TOC entry 5080 (class 0 OID 0)
+-- TOC entry 5081 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: clases_id_clase_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -104,7 +104,7 @@ CREATE SEQUENCE public.entrenadores_id_entrenador_seq
 ALTER SEQUENCE public.entrenadores_id_entrenador_seq OWNER TO postgres;
 
 --
--- TOC entry 5081 (class 0 OID 0)
+-- TOC entry 5082 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: entrenadores_id_entrenador_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -146,7 +146,7 @@ CREATE SEQUENCE public.inscripciones_id_inscripcion_seq
 ALTER SEQUENCE public.inscripciones_id_inscripcion_seq OWNER TO postgres;
 
 --
--- TOC entry 5082 (class 0 OID 0)
+-- TOC entry 5083 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: inscripciones_id_inscripcion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -191,7 +191,7 @@ CREATE SEQUENCE public.miembros_id_miembro_seq
 ALTER SEQUENCE public.miembros_id_miembro_seq OWNER TO postgres;
 
 --
--- TOC entry 5083 (class 0 OID 0)
+-- TOC entry 5084 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: miembros_id_miembro_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -210,6 +210,7 @@ CREATE TABLE public.planes (
     duracion_dias integer NOT NULL,
     precio numeric(12,2) NOT NULL,
     descripcion character varying(200),
+    incluye_clases boolean DEFAULT false NOT NULL,
     CONSTRAINT planes_duracion_dias_check CHECK ((duracion_dias > 0)),
     CONSTRAINT planes_precio_check CHECK ((precio > (0)::numeric))
 );
@@ -234,7 +235,7 @@ CREATE SEQUENCE public.planes_id_plan_seq
 ALTER SEQUENCE public.planes_id_plan_seq OWNER TO postgres;
 
 --
--- TOC entry 5084 (class 0 OID 0)
+-- TOC entry 5085 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: planes_id_plan_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -243,7 +244,7 @@ ALTER SEQUENCE public.planes_id_plan_seq OWNED BY public.planes.id_plan;
 
 
 --
--- TOC entry 4879 (class 2604 OID 24632)
+-- TOC entry 4880 (class 2604 OID 24632)
 -- Name: clases id_clase; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -251,7 +252,7 @@ ALTER TABLE ONLY public.clases ALTER COLUMN id_clase SET DEFAULT nextval('public
 
 
 --
--- TOC entry 4877 (class 2604 OID 24596)
+-- TOC entry 4878 (class 2604 OID 24596)
 -- Name: entrenadores id_entrenador; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -259,7 +260,7 @@ ALTER TABLE ONLY public.entrenadores ALTER COLUMN id_entrenador SET DEFAULT next
 
 
 --
--- TOC entry 4880 (class 2604 OID 24654)
+-- TOC entry 4881 (class 2604 OID 24654)
 -- Name: inscripciones id_inscripcion; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -267,7 +268,7 @@ ALTER TABLE ONLY public.inscripciones ALTER COLUMN id_inscripcion SET DEFAULT ne
 
 
 --
--- TOC entry 4878 (class 2604 OID 24609)
+-- TOC entry 4879 (class 2604 OID 24609)
 -- Name: miembros id_miembro; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -283,7 +284,7 @@ ALTER TABLE ONLY public.planes ALTER COLUMN id_plan SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 5072 (class 0 OID 24629)
+-- TOC entry 5073 (class 0 OID 24629)
 -- Dependencies: 226
 -- Data for Name: clases; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -303,7 +304,7 @@ COPY public.clases (id_clase, nombre_clase, id_entrenador, dia_semana, hora_inic
 
 
 --
--- TOC entry 5068 (class 0 OID 24593)
+-- TOC entry 5069 (class 0 OID 24593)
 -- Dependencies: 222
 -- Data for Name: entrenadores; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -323,7 +324,7 @@ COPY public.entrenadores (id_entrenador, nombre_entrenador, especialidad, email,
 
 
 --
--- TOC entry 5074 (class 0 OID 24651)
+-- TOC entry 5075 (class 0 OID 24651)
 -- Dependencies: 228
 -- Data for Name: inscripciones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -343,7 +344,7 @@ COPY public.inscripciones (id_inscripcion, id_miembro, id_clase, fecha_inscripci
 
 
 --
--- TOC entry 5070 (class 0 OID 24606)
+-- TOC entry 5071 (class 0 OID 24606)
 -- Dependencies: 224
 -- Data for Name: miembros; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -363,27 +364,27 @@ COPY public.miembros (id_miembro, nombre_miembro, documento, email, telefono, fe
 
 
 --
--- TOC entry 5066 (class 0 OID 24578)
+-- TOC entry 5067 (class 0 OID 24578)
 -- Dependencies: 220
 -- Data for Name: planes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.planes (id_plan, nombre_plan, duracion_dias, precio, descripcion) FROM stdin;
-1	Diario	1	15000.00	Acceso por un día a sala de máquinas
-2	Semanal	7	40000.00	Acceso libre durante siete días
-3	Mensual Básico	30	90000.00	Sala de máquinas, sin clases grupales
-4	Mensual Full	30	130000.00	Sala de máquinas y todas las clases grupales
-5	Trimestral	90	330000.00	Tres meses con clases grupales incluidas
-6	Semestral	180	600000.00	Seis meses con clases y valoración física
-7	Anual	365	1050000.00	Doce meses con clases y plan de entrenamiento
-8	Estudiante	30	75000.00	Mensual con descuento para estudiantes
-9	Pareja	30	220000.00	Mensual Full para dos personas
-10	Senior	30	70000.00	Mensual para mayores de 60 años
+COPY public.planes (id_plan, nombre_plan, duracion_dias, precio, descripcion, incluye_clases) FROM stdin;
+1	Diario	1	15000.00	Acceso por un día a sala de máquinas	f
+2	Semanal	7	40000.00	Acceso libre durante siete días	f
+3	Mensual Básico	30	90000.00	Sala de máquinas, sin clases grupales	f
+4	Mensual Full	30	130000.00	Sala de máquinas y todas las clases grupales	t
+5	Trimestral	90	330000.00	Tres meses con clases grupales incluidas	t
+6	Semestral	180	600000.00	Seis meses con clases y valoración física	t
+7	Anual	365	1050000.00	Doce meses con clases y plan de entrenamiento	t
+8	Estudiante	30	75000.00	Mensual con descuento para estudiantes	t
+9	Pareja	30	220000.00	Mensual Full para dos personas	t
+10	Senior	30	70000.00	Mensual para mayores de 60 años	t
 \.
 
 
 --
--- TOC entry 5085 (class 0 OID 0)
+-- TOC entry 5086 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: clases_id_clase_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -392,7 +393,7 @@ SELECT pg_catalog.setval('public.clases_id_clase_seq', 10, true);
 
 
 --
--- TOC entry 5086 (class 0 OID 0)
+-- TOC entry 5087 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: entrenadores_id_entrenador_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -401,7 +402,7 @@ SELECT pg_catalog.setval('public.entrenadores_id_entrenador_seq', 10, true);
 
 
 --
--- TOC entry 5087 (class 0 OID 0)
+-- TOC entry 5088 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: inscripciones_id_inscripcion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -410,7 +411,7 @@ SELECT pg_catalog.setval('public.inscripciones_id_inscripcion_seq', 10, true);
 
 
 --
--- TOC entry 5088 (class 0 OID 0)
+-- TOC entry 5089 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: miembros_id_miembro_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -419,16 +420,16 @@ SELECT pg_catalog.setval('public.miembros_id_miembro_seq', 10, true);
 
 
 --
--- TOC entry 5089 (class 0 OID 0)
+-- TOC entry 5090 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: planes_id_plan_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.planes_id_plan_seq', 10, true);
+SELECT pg_catalog.setval('public.planes_id_plan_seq', 12, true);
 
 
 --
--- TOC entry 4906 (class 2606 OID 24644)
+-- TOC entry 4907 (class 2606 OID 24644)
 -- Name: clases clases_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -437,7 +438,7 @@ ALTER TABLE ONLY public.clases
 
 
 --
--- TOC entry 4895 (class 2606 OID 24604)
+-- TOC entry 4896 (class 2606 OID 24604)
 -- Name: entrenadores entrenadores_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -446,7 +447,7 @@ ALTER TABLE ONLY public.entrenadores
 
 
 --
--- TOC entry 4897 (class 2606 OID 24602)
+-- TOC entry 4898 (class 2606 OID 24602)
 -- Name: entrenadores entrenadores_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -455,7 +456,7 @@ ALTER TABLE ONLY public.entrenadores
 
 
 --
--- TOC entry 4911 (class 2606 OID 24664)
+-- TOC entry 4912 (class 2606 OID 24664)
 -- Name: inscripciones inscripciones_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -464,7 +465,7 @@ ALTER TABLE ONLY public.inscripciones
 
 
 --
--- TOC entry 4900 (class 2606 OID 24620)
+-- TOC entry 4901 (class 2606 OID 24620)
 -- Name: miembros miembros_documento_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -473,7 +474,7 @@ ALTER TABLE ONLY public.miembros
 
 
 --
--- TOC entry 4902 (class 2606 OID 24622)
+-- TOC entry 4903 (class 2606 OID 24622)
 -- Name: miembros miembros_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -482,7 +483,7 @@ ALTER TABLE ONLY public.miembros
 
 
 --
--- TOC entry 4904 (class 2606 OID 24618)
+-- TOC entry 4905 (class 2606 OID 24618)
 -- Name: miembros miembros_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -491,7 +492,7 @@ ALTER TABLE ONLY public.miembros
 
 
 --
--- TOC entry 4891 (class 2606 OID 24591)
+-- TOC entry 4892 (class 2606 OID 24591)
 -- Name: planes planes_nombre_plan_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -500,7 +501,7 @@ ALTER TABLE ONLY public.planes
 
 
 --
--- TOC entry 4893 (class 2606 OID 24589)
+-- TOC entry 4894 (class 2606 OID 24589)
 -- Name: planes planes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -509,7 +510,7 @@ ALTER TABLE ONLY public.planes
 
 
 --
--- TOC entry 4913 (class 2606 OID 24666)
+-- TOC entry 4914 (class 2606 OID 24666)
 -- Name: inscripciones uq_inscripcion; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -518,7 +519,7 @@ ALTER TABLE ONLY public.inscripciones
 
 
 --
--- TOC entry 4907 (class 1259 OID 24678)
+-- TOC entry 4908 (class 1259 OID 24678)
 -- Name: idx_clases_entrenador; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -526,7 +527,7 @@ CREATE INDEX idx_clases_entrenador ON public.clases USING btree (id_entrenador);
 
 
 --
--- TOC entry 4908 (class 1259 OID 24680)
+-- TOC entry 4909 (class 1259 OID 24680)
 -- Name: idx_inscripciones_clase; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -534,7 +535,7 @@ CREATE INDEX idx_inscripciones_clase ON public.inscripciones USING btree (id_cla
 
 
 --
--- TOC entry 4909 (class 1259 OID 24679)
+-- TOC entry 4910 (class 1259 OID 24679)
 -- Name: idx_inscripciones_miembro; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -542,7 +543,7 @@ CREATE INDEX idx_inscripciones_miembro ON public.inscripciones USING btree (id_m
 
 
 --
--- TOC entry 4898 (class 1259 OID 24677)
+-- TOC entry 4899 (class 1259 OID 24677)
 -- Name: idx_miembros_plan; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -550,7 +551,7 @@ CREATE INDEX idx_miembros_plan ON public.miembros USING btree (id_plan);
 
 
 --
--- TOC entry 4915 (class 2606 OID 24645)
+-- TOC entry 4916 (class 2606 OID 24645)
 -- Name: clases fk_clases_entrenador; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -559,7 +560,7 @@ ALTER TABLE ONLY public.clases
 
 
 --
--- TOC entry 4916 (class 2606 OID 24672)
+-- TOC entry 4917 (class 2606 OID 24672)
 -- Name: inscripciones fk_inscripciones_clase; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -568,7 +569,7 @@ ALTER TABLE ONLY public.inscripciones
 
 
 --
--- TOC entry 4917 (class 2606 OID 24667)
+-- TOC entry 4918 (class 2606 OID 24667)
 -- Name: inscripciones fk_inscripciones_miembro; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -577,7 +578,7 @@ ALTER TABLE ONLY public.inscripciones
 
 
 --
--- TOC entry 4914 (class 2606 OID 24623)
+-- TOC entry 4915 (class 2606 OID 24623)
 -- Name: miembros fk_miembros_plan; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -585,11 +586,11 @@ ALTER TABLE ONLY public.miembros
     ADD CONSTRAINT fk_miembros_plan FOREIGN KEY (id_plan) REFERENCES public.planes(id_plan) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 
--- Completed on 2026-11-15 14:36:31
+-- Completed on 2026-11-16 19:37:02
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict cw4Oys5yBhLMnbpjADlZXllOPP6SmPGqebFr0ih0hO69W8skmJt8fym4qDe40t6
+\unrestrict WxM5qP3ZQn0nNwkbBuqgjoOWwAwXI9036TjLcBoNLAZAlaJLG7zKXBi7j1lgMb2
 

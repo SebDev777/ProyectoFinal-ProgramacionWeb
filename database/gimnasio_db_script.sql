@@ -20,6 +20,7 @@ CREATE TABLE planes (
     nombre_plan   VARCHAR(60)   NOT NULL UNIQUE,
     duracion_dias INTEGER       NOT NULL CHECK (duracion_dias > 0),
     precio        NUMERIC(12,2) NOT NULL CHECK (precio > 0),
+    incluye_clases BOOLEAN      NOT NULL DEFAULT FALSE,
     descripcion   VARCHAR(200)
 );
 
@@ -84,17 +85,17 @@ CREATE INDEX idx_inscripciones_clase   ON inscripciones (id_clase);
 -- ---------------------------------------------------------
 -- Datos (10 registros por tabla)
 -- ---------------------------------------------------------
-INSERT INTO planes (nombre_plan, duracion_dias, precio, descripcion) VALUES
-('Diario',            1,    15000.00, 'Acceso por un día a sala de máquinas'),
-('Semanal',           7,    40000.00, 'Acceso libre durante siete días'),
-('Mensual Básico',   30,    90000.00, 'Sala de máquinas, sin clases grupales'),
-('Mensual Full',     30,   130000.00, 'Sala de máquinas y todas las clases grupales'),
-('Trimestral',       90,   330000.00, 'Tres meses con clases grupales incluidas'),
-('Semestral',       180,   600000.00, 'Seis meses con clases y valoración física'),
-('Anual',           365,  1050000.00, 'Doce meses con clases y plan de entrenamiento'),
-('Estudiante',       30,    75000.00, 'Mensual con descuento para estudiantes'),
-('Pareja',           30,   220000.00, 'Mensual Full para dos personas'),
-('Senior',           30,    70000.00, 'Mensual para mayores de 60 años');
+INSERT INTO planes (nombre_plan, duracion_dias, precio, incluye_clases, descripcion) VALUES
+('Diario',            1,    15000.00, FALSE, 'Acceso por un día a sala de máquinas'),
+('Semanal',           7,    40000.00, FALSE, 'Acceso libre a sala de máquinas durante siete días'),
+('Mensual Básico',   30,    90000.00, FALSE, 'Sala de máquinas, sin clases grupales'),
+('Mensual Full',     30,   130000.00, TRUE,  'Sala de máquinas y todas las clases grupales'),
+('Trimestral',       90,   330000.00, TRUE,  'Tres meses con clases grupales incluidas'),
+('Semestral',       180,   600000.00, TRUE,  'Seis meses con clases y valoración física'),
+('Anual',           365,  1050000.00, TRUE,  'Doce meses con clases y plan de entrenamiento'),
+('Estudiante',       30,    75000.00, TRUE,  'Mensual con clases y descuento para estudiantes'),
+('Pareja',           30,   220000.00, TRUE,  'Mensual Full para dos personas'),
+('Senior',           30,    70000.00, TRUE,  'Mensual con clases para mayores de 60 años');
 
 INSERT INTO entrenadores (nombre_entrenador, especialidad, email, telefono) VALUES
 ('Carlos Andrés Medina',   'Spinning',           'carlos.medina@gym.com',   '3101112233'),
