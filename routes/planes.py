@@ -13,6 +13,7 @@ def _leer_formulario(form):
         "nombre_plan": v.texto(form, "nombre_plan", "El nombre del plan", errores, max_len=60),
         "duracion_dias": v.entero(form, "duracion_dias", "La duración", errores, minimo=1),
         "precio": v.decimal(form, "precio", "El precio", errores, mayor_que=0),
+        "incluye_clases": form.get("incluye_clases") == "on",
         "descripcion": v.texto(form, "descripcion", "La descripción", errores,
                                obligatorio=False, max_len=200),
     }
@@ -39,8 +40,10 @@ def crear():
         datos, errores = _leer_formulario(request.form)
         if not errores:
             try:
-                execute("""INSERT INTO planes (nombre_plan, duracion_dias, precio, descripcion)
-                           VALUES (%(nombre_plan)s, %(duracion_dias)s, %(precio)s, %(descripcion)s)""",
+                execute("""INSERT INTO planes
+                               (nombre_plan, duracion_dias, precio, incluye_clases, descripcion)
+                           VALUES (%(nombre_plan)s, %(duracion_dias)s, %(precio)s,
+                                   %(incluye_clases)s, %(descripcion)s)""",
                         datos)
                 flash("Plan creado correctamente.", "success")
                 return redirect(url_for("planes.listar"))
@@ -58,6 +61,7 @@ def editar(id):
         abort(404)
     if request.method == "POST":
         item = {**item, **request.form.to_dict()}
+        item["incluye_clases"] = "incluye_clases" in request.form
         datos, errores = _leer_formulario(request.form)
         if not errores:
             try:
@@ -65,6 +69,7 @@ def editar(id):
                               SET nombre_plan = %(nombre_plan)s,
                                   duracion_dias = %(duracion_dias)s,
                                   precio = %(precio)s,
+                                  incluye_clases = %(incluye_clases)s,
                                   descripcion = %(descripcion)s
                             WHERE id_plan = %(id)s""",
                         {**datos, "id": id})

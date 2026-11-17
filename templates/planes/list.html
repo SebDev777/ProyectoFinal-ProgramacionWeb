@@ -8,7 +8,10 @@
 
 <table class="table table-striped table-bordered bg-white align-middle">
   <thead class="table-dark">
-    <tr><th>ID</th><th>Plan</th><th>Días</th><th>Precio</th><th>Miembros</th><th>Acciones</th></tr>
+    <tr>
+      <th>ID</th><th>Plan</th><th>Días</th><th>Precio</th>
+      <th>Clases</th><th>Miembros</th><th>Acciones</th>
+    </tr>
   </thead>
   <tbody>
     {% for p in items %}
@@ -17,6 +20,7 @@
       <td>{{ p.nombre_plan }}</td>
       <td>{{ p.duracion_dias }}</td>
       <td>{{ p.precio }}</td>
+      <td>{{ 'Sí' if p.incluye_clases else 'No' }}</td>
       <td>{{ p.num_miembros }}</td>
       <td>
         <a class="btn btn-sm btn-outline-primary" href="{{ url_for('planes.editar', id=p.id_plan) }}">Editar</a>
