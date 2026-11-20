@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}{{ titulo }}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-xl-7">
+    <div class="mb-4">
+      <h1 class="ip-title">{{ titulo }}</h1>
+    </div>
+
+    <div class="ip-card">
+      <form method="post" class="p-4">
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label" for="nombre_clase">Nombre de la clase *</label>
+            <input class="form-control" id="nombre_clase" name="nombre_clase"
+                   maxlength="80" required autofocus
+                   placeholder="Ej: Spinning mañana"
+                   value="{{ item.nombre_clase or '' }}">
+          </div>
+
+          <div class="col-12">
+            <label class="form-label" for="id_entrenador">Entrenador *</label>
+            <select class="form-select" id="id_entrenador" name="id_entrenador" required>
+              <option value="">Selecciona un entrenador...</option>
+              {% for en in entrenadores %}
+                <option value="{{ en.id_entrenador }}"
+                        {{ 'selected' if item.id_entrenador|string == en.id_entrenador|string }}>
+                  {{ en.nombre_entrenador }} ({{ en.especialidad }})
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="dia_semana">Día *</label>
+            <select class="form-select" id="dia_semana" name="dia_semana" required>
+              <option value="">Selecciona un día...</option>
+              {% for d in dias %}
+                <option value="{{ d }}" {{ 'selected' if item.dia_semana == d }}>{{ d }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          {% set h = item.hora_inicio %}
+          <div class="col-md-6">
+            <label class="form-label" for="hora_inicio">Hora de inicio *</label>
+            <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" required
+                   value="{{ h.strftime('%H:%M') if h and h is not string else (h or '') }}">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="duracion_min">Duración *</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="duracion_min" name="duracion_min"
+                     min="1" step="1" required placeholder="60"
+                     value="{{ item.duracion_min or '' }}">
+              <span class="input-group-text">min</span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="cupo_maximo">Cupo máximo *</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="cupo_maximo" name="cupo_maximo"
+                     min="1" step="1" required placeholder="20"
+                     value="{{ item.cupo_maximo or '' }}">
+              <span class="input-group-text">personas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-4">
+          <button class="btn btn-primary" type="submit">
+            <i class="bi bi-check-lg me-1"></i>Guardar clase
+          </button>
+          <a class="btn btn-secondary" href="{{ url_for('clases.listar') }}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

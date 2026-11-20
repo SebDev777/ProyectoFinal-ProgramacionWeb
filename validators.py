@@ -11,7 +11,7 @@ def texto(form, campo, etiqueta, errores, obligatorio=True, max_len=None):
     valor = _leer(form, campo)
     if not valor:
         if obligatorio:
-            errores.append(f"{etiqueta} es obligatorio.")
+            errores.append(f"{etiqueta} es un dato obligatorio..")
         return None
     if max_len and len(valor) > max_len:
         errores.append(f"{etiqueta} no puede pasar de {max_len} caracteres.")
@@ -21,7 +21,7 @@ def texto(form, campo, etiqueta, errores, obligatorio=True, max_len=None):
 def entero(form, campo, etiqueta, errores, minimo=None):
     valor = _leer(form, campo)
     if not valor:
-        errores.append(f"{etiqueta} es obligatorio.")
+        errores.append(f"{etiqueta} es un dato obligatorio..")
         return None
     if not valor.lstrip("-").isdigit():
         errores.append(f"{etiqueta} debe ser un número entero.")
@@ -35,7 +35,7 @@ def entero(form, campo, etiqueta, errores, minimo=None):
 def decimal(form, campo, etiqueta, errores, mayor_que=None):
     valor = _leer(form, campo).replace(",", ".")
     if not valor:
-        errores.append(f"{etiqueta} es obligatorio.")
+        errores.append(f"{etiqueta} es un dato obligatorio..")
         return None
     try:
         numero = Decimal(valor)
@@ -63,7 +63,7 @@ def email(form, campo, etiqueta, errores, obligatorio=False):
     valor = _leer(form, campo)
     if not valor:
         if obligatorio:
-            errores.append(f"{etiqueta} es obligatorio.")
+            errores.append(f"{etiqueta} es un dato obligatorio..")
         return None
     if "@" not in valor or "." not in valor.split("@")[-1]:
         errores.append(f"{etiqueta} no tiene un formato válido.")

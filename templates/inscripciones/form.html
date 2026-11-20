@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}{{ titulo }}{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-xl-7">
+    <div class="mb-4">
+      <h1 class="ip-title">{{ titulo }}</h1>
+    </div>
+
+    <div class="ip-card">
+      <form method="post" class="p-4">
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label" for="id_miembro">Miembro *</label>
+            <select class="form-select" id="id_miembro" name="id_miembro" required autofocus>
+              <option value="">Selecciona un miembro...</option>
+              {% for m in miembros %}
+                <option value="{{ m.id_miembro }}"
+                        {{ 'selected' if item.id_miembro|string == m.id_miembro|string }}>
+                  {{ m.nombre_miembro }} · {{ m.nombre_plan }}{% if not m.incluye_clases %} (sin clases){% endif %}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label" for="id_clase">Clase *</label>
+            <select class="form-select" id="id_clase" name="id_clase" required>
+              <option value="">Selecciona una clase...</option>
+              {% for c in clases %}
+                <option value="{{ c.id_clase }}"
+                        {{ 'selected' if item.id_clase|string == c.id_clase|string }}>
+                  {{ c.nombre_clase }} · {{ c.dia_semana }} {{ c.hora_inicio.strftime('%H:%M') }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="fecha_inscripcion">Fecha de inscripción *</label>
+            <input type="date" class="form-control" id="fecha_inscripcion" name="fecha_inscripcion"
+                   required value="{{ item.fecha_inscripcion or hoy }}">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label" for="estado">Estado *</label>
+            <select class="form-select" id="estado" name="estado" required>
+              {% for e in estados %}
+                <option value="{{ e }}"
+                        {{ 'selected' if (item.estado or 'Activa') == e }}>{{ e }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-4">
+          <button class="btn btn-primary" type="submit">
+            <i class="bi bi-check-lg me-1"></i>Guardar inscripción
+          </button>
+          <a class="btn btn-secondary" href="{{ url_for('inscripciones.listar') }}">Cancelar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

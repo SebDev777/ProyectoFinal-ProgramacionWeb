@@ -3,6 +3,10 @@ from flask import Flask, render_template
 
 from config import Config
 from routes.planes import bp as planes_bp
+from routes.entrenadores import bp as entrenadores_bp
+from routes.miembros import bp as miembros_bp
+from routes.clases import bp as clases_bp
+from routes.inscripciones import bp as inscripciones_bp
 
 
 def create_app():
@@ -10,6 +14,10 @@ def create_app():
     app.config.from_object(Config)
 
     app.register_blueprint(planes_bp)
+    app.register_blueprint(entrenadores_bp)
+    app.register_blueprint(miembros_bp)
+    app.register_blueprint(clases_bp)
+    app.register_blueprint(inscripciones_bp)
 
     @app.route("/")
     def inicio():

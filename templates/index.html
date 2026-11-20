@@ -33,5 +33,41 @@
       </span>
     </a>
   </div>
+  <div class="col-md-6">
+    <a class="ip-shortcut" href="{{ url_for('entrenadores.listar') }}">
+      <span class="icon"><i class="bi bi-person-badge"></i></span>
+      <span>
+        <h2>Entrenadores</h2>
+        <p>Equipo que dicta las clases.</p>
+      </span>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a class="ip-shortcut" href="{{ url_for('miembros.listar') }}">
+      <span class="icon"><i class="bi bi-people"></i></span>
+      <span>
+        <h2>Miembros</h2>
+        <p>Socios, planes y fechas de vencimiento.</p>
+      </span>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a class="ip-shortcut" href="{{ url_for('clases.listar') }}">
+      <span class="icon"><i class="bi bi-calendar-event"></i></span>
+      <span>
+        <h2>Clases</h2>
+        <p>Horarios, entrenadores y cupos.</p>
+      </span>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a class="ip-shortcut" href="{{ url_for('inscripciones.listar') }}">
+      <span class="icon"><i class="bi bi-clipboard-check"></i></span>
+      <span>
+        <h2>Inscripciones</h2>
+        <p>Qué miembro asiste a cada clase.</p>
+      </span>
+    </a>
+  </div>
 </div>
 {% endblock %}
