@@ -71,7 +71,7 @@ Resumen de las relaciones:
    psql -d gimnasio_db -f database/gimnasio_db_script.sql
    ```
 
-5. **Configurar las variables de entorno.** Copia el archivo de ejemplo y completa tus datos:
+4. **Configurar las variables de entorno.** Copia el archivo de ejemplo y completa tus datos:
 
    ```bash
    cp .env.example .env      # Windows: copy .env.example .env
