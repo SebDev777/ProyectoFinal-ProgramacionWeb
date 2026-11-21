@@ -59,13 +59,16 @@ Resumen de las relaciones:
   ```
 
   En caso de que no se abra el entorno virtual:
-  source .venv/Scripts/activate
+  source 
+  ```bash
+  .venv/Scripts/activate
+  ```
 
 3. **Crear la base de datos** `gimnasio_db` en PostgreSQL y cargar el script de tablas:
 
    ```bash
    createdb gimnasio_db
-   psql -d gimnasio_db -f gimnasio_db_script.sql
+   psql -d gimnasio_db -f database/gimnasio_db_script.sql
    ```
 
 5. **Configurar las variables de entorno.** Copia el archivo de ejemplo y completa tus datos:
@@ -99,16 +102,6 @@ py -m pytest -v
 ```
 
 El plan de pruebas con sus casos y evidencias está en [`docs/plan_de_pruebas.md`](docs/plan_de_pruebas.md).
-
-## Capturas de la aplicación
-
-| Inicio | Listado de planes |
-|---|---|
-| ![Inicio](docs/capturas/inicio.png) | ![Listado de planes](docs/capturas/planes_listado.png) |
-
-| Formulario de plan | Confirmación al eliminar |
-|---|---|
-| ![Formulario](docs/capturas/plan_formulario.png) | ![Eliminar](docs/capturas/plan_eliminar.png) |
 
 ## Estructura del proyecto
 
