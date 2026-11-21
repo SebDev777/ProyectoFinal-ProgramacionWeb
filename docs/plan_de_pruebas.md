@@ -74,18 +74,17 @@ Archivo: `tests/test_crud.py`. Se ejecutan contra la base real; cada prueba crea
 pytest -v
 ```
 
-Las pruebas automatizadas cubren los casos principales de cada tabla:
+Las pruebas automatizadas cubren la carga de páginas y el CRUD de `planes`:
 
-| Tabla | Funciones de prueba | Casos que respaldan |
-|---|---|---|
-| Todas | `test_paginas_cargan` | Carga de las páginas de listado |
-| `planes` | `test_crear_plan`, `test_editar_plan`, `test_plan_datos_invalidos`, `test_eliminar_plan_con_miembros_se_rechaza` | PL-01 a PL-04 |
-| `entrenadores` | `test_crear_entrenador` | EN-01 |
-| `miembros` | `test_crear_miembro` | MI-01 |
-| `clases` | `test_crear_clase` | CL-01 |
-| `inscripciones` | `test_crear_inscripcion`, `test_inscripcion_plan_sin_clases_se_rechaza` | IN-01, IN-02 |
+| Funciones de prueba | Casos que respaldan |
+|---|---|
+| `test_paginas_cargan` | Carga de las páginas de listado de las 5 tablas |
+| `test_crear_plan` | PL-01 |
+| `test_editar_plan` | PL-02 |
+| `test_plan_con_precio_negativo_no_se_guarda` | PL-03 |
+| `test_eliminar_plan` | PL-04 (parte a) |
 
-Los demás casos (EN-02 a EN-04, MI-02 a MI-04, CL-02 a CL-04, IN-03 e IN-04) se verifican solo de forma manual.
+El resto de los casos (entrenadores, miembros, clases e inscripciones, y el intento de eliminar un registro relacionado) se verifican de forma manual con capturas.
 
 **Evidencias de las pruebas automatizadas** (en `docs/evidencias/`):
 
@@ -105,5 +104,3 @@ Los demás casos (EN-02 a EN-04, MI-02 a MI-04, CL-02 a CL-04, IN-03 e IN-04) se
 | ID | Caso | Defecto | Corrección | Estado |
 |---|---|---|---|---|
 | D-01 | _[ ]_ | _[ ]_ | _[ ]_ | _[ ]_ |
-
-**Conclusión:** _[qué cubren las pruebas, qué errores se corrigieron y qué tan confiable queda el sistema]_
